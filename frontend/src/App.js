@@ -25,10 +25,12 @@
 import './App.css';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
+import Home from './components/Home/Home';
 
 const App =() => (
   <>
     <Header/>
+     {/*<Home/>*/}
     <main style={{ minHeight: "93vh"}}></main>
     <Footer/>
   </>
