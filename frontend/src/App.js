@@ -1,39 +1,41 @@
-// import logo from './logo.svg';
+import React, { useState } from 'react'
 // import './App.css';
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
+import { BrowserRouter, Route } from 'react-router-dom'
+// import Footer from './component/Footer/Footer';
+import MainPage from './screens/MainPage/MainPage';
+import Category from './screens/Category/Category';
+import LoginPage from './screens/LoginPage/LoginPage';
+import RegisterPage from './screens/RegisterPage/RegisterPage';
+import CreateCategory from './screens/CreateCategory/CreateCategory';
+import SingleCategory from './screens/SingleCategory/SingleCategory';
+import ReactMarkdown from 'react-markdown';
+import Home from './screens/MainPage/Home';
+import NavBar from './component/Header/NavBar';
+// import Header from './component/Header/Header';
 
-import './App.css';
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
-import Home from './components/Home/Home';
 
-const App =() => (
-  <>
-    <Header/>
-     {/*<Home/>*/}
-    <main style={{ minHeight: "93vh"}}></main>
-    <Footer/>
-  </>
-)
+const App = () => {
+  const [search, setSearch] = useState("")
+  console.log(search);
+  return (
+    <BrowserRouter>
+      {/* <Header setSearch={setSearch} /> */}
+      <NavBar />
+      
 
-export default App;
+      <main >
+        <Route path='/' component={Home} exact />
+        <Route path='/login' component={LoginPage} />
+        <Route path='/register' component={RegisterPage} />
+        <Route path='/category' component={() => <Category search={search} />} />
+        <Route path='/categorycreate' component={CreateCategory} />
+        <Route path='/categoryUpdate/:id' component={SingleCategory} />
+
+      </main>
+      {/* <Footer /> */}
+    </BrowserRouter>
+  )
+}
+
+export default App
