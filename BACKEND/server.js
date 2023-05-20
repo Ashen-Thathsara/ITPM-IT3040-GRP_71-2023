@@ -1,40 +1,33 @@
-const express = require('express');
-const notes = require('./Data/notes')
-const dotenv = require('dotenv');
-const { connect } = require('mongoose');
-const connectDB = require('./config/db')
-const userRoutes = require ('./routes/userRouter');
-const categoryRoutes = require('./routes/categoryRouter');
-const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
-const path = require('path'); // nodejs module
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const app = express(); 
+require("dotenv").config();
+ 
 
-const app = express();
-dotenv.config();
-connectDB();
-app.use(express.json());
+const PORT = process.env.PORT || 8070;
 
-//---------deployment--------------//
-// __dirname= path.resolve()
-// if(process.env.NODE_ENV==='production'){
-//  app.use(express.static(path.join(__dirname,'/frontend/build')));
-//  app.get('*',(req,res)=>{
-//   res.sendFile(path.resolve(__dirname,'frontend','build','index.html'))
-//  })
-// }else{
-//     app.get("/",(res,req)=>{
-//          res.send("API is running...")
-// })
-// }
-
-//---------create routes--------------//
-app.use('/api/users',userRoutes);
-app.use('/api/category', categoryRoutes);
-
-app.use(notFound);
-app.use(errorHandler);
+app.use(cors());
+app.use(bodyParser.json());
 
 
-//------create port to connect--------------//
-const PORT = process.env.PORT || 5000;
+const URL = process.env.MONGODB_URL;
 
-app.listen(PORT, console.log(`server started on PORT ${PORT} `));
+mongoose.connect(URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
+const connection = mongoose.connection;
+
+connection.once("open", () => {
+    console.log("MongoDB connection success!");
+})
+const eventRouter = require("./routes/Event.js");
+app.use("/event",eventRouter);
+
+app.listen(PORT, () =>{
+    console.log(`Server is up and running on port no ${PORT}`)
+})

@@ -1,41 +1,28 @@
-import React, { useState } from 'react'
-// import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
-import { BrowserRouter, Route } from 'react-router-dom'
-// import Footer from './component/Footer/Footer';
-import MainPage from './screens/MainPage/MainPage';
-import Category from './screens/Category/Category';
-import LoginPage from './screens/LoginPage/LoginPage';
-import RegisterPage from './screens/RegisterPage/RegisterPage';
-import CreateCategory from './screens/CreateCategory/CreateCategory';
-import SingleCategory from './screens/SingleCategory/SingleCategory';
-import ReactMarkdown from 'react-markdown';
-import Home from './screens/MainPage/Home';
-import NavBar from './component/Header/NavBar';
-// import Header from './component/Header/Header';
+import AddEvent from "./pages/AddCourses/AddCourses";
+import AllEvents from "./pages/Allacourses/AllCourses";
+import EditEvent from "./pages/EditCourse/EditCourse";
+import AllEventsdisplay from "./pages/Allacourses/display";
 
-
-const App = () => {
-  const [search, setSearch] = useState("")
-  console.log(search);
+function App() {
   return (
-    <BrowserRouter>
-      {/* <Header setSearch={setSearch} /> */}
-      <NavBar />
+    <div className="App">
+      <BrowserRouter>
+      <Routes>
+      <Route path="/" element={<AddEvent />} />
+      <Route path="/all" element={<AllEvents />} />
+      <Route path="/edit/:id" element={<EditEvent />} />
+      <Route path="/display" element={<AllEventsdisplay />} />
+      </Routes>
+      </BrowserRouter>
       
-
-      <main >
-        <Route path='/' component={Home} exact />
-        <Route path='/login' component={LoginPage} />
-        <Route path='/register' component={RegisterPage} />
-        <Route path='/category' component={() => <Category search={search} />} />
-        <Route path='/categorycreate' component={CreateCategory} />
-        <Route path='/categoryUpdate/:id' component={SingleCategory} />
-
-      </main>
-      {/* <Footer /> */}
-    </BrowserRouter>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
