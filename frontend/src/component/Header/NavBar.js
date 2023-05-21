@@ -149,20 +149,20 @@ const Header = ({ history, setSearch }) => {
 
     return (
         <div>
-            <Navbar bg="success" expand="lg" variant='dark'>
+            <Navbar bg="success" expand="lg" variant='dark' style={{ color: "#fff" }}>
                 <Container>
-                    <Navbar.Brand href="/">Under Water</Navbar.Brand>
+                    <Navbar.Brand href="/" style={{ fontSize: "30px", fontWeight: "bold", color: "#fff" }}>Under Water</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav className='m-auto'>
                             <Form className="d-flex">
-                                <Form.Control
+                                {/* <Form.Control
                                     type="search"
                                     placeholder="Search"
                                     className="me-2"
                                     aria-label="Search"
                                     onChange={(e) => setSearch(e.target.value)}
-                                />
+                                /> */}
                                 {/* <Button variant="outline-success">Search</Button> */}
                             </Form>
                         </Nav>
@@ -171,8 +171,8 @@ const Header = ({ history, setSearch }) => {
                             style={{ maxHeight: '100px' }}
                             navbarScroll
                         >
-                            <Nav.Link href="#action1"><Link to='/home'>Home</Link></Nav.Link>
-                            <Nav.Link href="#action2">Courses</Nav.Link>
+                            <Nav.Link href="#action1"><Link to='/'>Home</Link></Nav.Link>
+                            <Nav.Link href="#action2"></Nav.Link>
                             <Nav.Link href="#action2">Events</Nav.Link>
                             <Nav.Link href="#action2"><Link to='/category'>Counceling</Link></Nav.Link>
                             <Nav.Link href="#action2">Donation</Nav.Link>
@@ -181,6 +181,9 @@ const Header = ({ history, setSearch }) => {
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={logoutHandler}>
                                     Logout
+                                </NavDropdown.Item>
+                                <NavDropdown.Item href='/login'>
+                                    Login
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
