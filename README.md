@@ -1,5 +1,4 @@
 ## ITPM-IT3040-GRP_71_2023
-## Team Name - 
 ## Project - Life Below Water
 ### Group Leader - IT20608668 - Mr. Pathum Chamod
 ### Member 2     - IT20612214 - Mr. Ashen Thathsara
